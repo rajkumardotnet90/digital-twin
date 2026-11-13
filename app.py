@@ -166,6 +166,8 @@ with st.sidebar:
         format_func=lambda m: m.strftime("%b %Y"),
         help="Starting state for the simulation. Defaults to the latest observed month.",
     )
+    forecast_end = pd.Timestamp(st.session_state["base_month"]) + pd.DateOffset(months=int(st.session_state["horizon"]))
+    st.caption(f"Forecast runs through **{forecast_end:%b %Y}**.")
 
     st.subheader("Scenario drivers (% change)")
     st.selectbox(
@@ -382,6 +384,15 @@ with tab_compare:
 
 # --------------------------------------------------------------------------- results tab
 with tab_results:
+    st.subheader("Forecast by year (average AQI)")
+    yearly = result.yearly_summary().round(1)
+    yearly.columns = [str(c) for c in yearly.columns]
+    st.dataframe(yearly, width="stretch")
+    st.caption(
+        "Years with fewer than 12 months of forecast are partial. Forecasts beyond about 12 months repeat the latest "
+        "observed state, so treat long-range values (2026-2027) as indicative, not precise."
+    )
+    st.subheader("All predictions (zone x month)")
     table = result.forecast.assign(timestamp=lambda d: d["timestamp"].dt.strftime("%Y-%m")).round(2)
     st.dataframe(
         table,

@@ -59,6 +59,16 @@ def test_forecast_months_are_consecutive(twin_enet):
     assert (np.diff(months.month.values) % 12 == 1).all()
 
 
+def test_default_horizon_reaches_end_of_2027(twin_enet):
+    res = run_simulation(twin_enet, make(zones=range(1, 11), horizon=config.DEFAULT_HORIZON_MONTHS))
+    assert res.forecast["timestamp"].max() == pd.Timestamp("2027-12-01")
+    yearly = res.yearly_summary()
+    assert list(yearly.columns) == [2024, 2025, 2026, 2027]
+    assert yearly.index[-1] == "All selected zones"
+    assert len(yearly) == 11
+    assert yearly[2027].notna().all()
+
+
 @pytest.mark.parametrize(
     "scenario, message",
     [

@@ -111,7 +111,7 @@ Step-by-step guides for **Streamlit Community Cloud** (free), **Render** and **H
 |---|---|---|---|
 | Zones | all 10 | any subset | Zones simulated; charts average across them |
 | Prediction model | ElasticNet | 10 models | Lasso has the best test R² but ignores most drivers; ElasticNet is the notebook's what-if model |
-| Forecast horizon | 12 months | 1-36 | Months forecast after the base month |
+| Forecast horizon | 42 months (through Dec 2027) | 1-42 | Months forecast after the base month |
 | Base month | Jun 2024 | any observed month | Starting state of the simulation |
 
 **Scenario drivers (% change applied to the zone's base-month value)**
@@ -136,6 +136,8 @@ the change; the forecast then rolls forward month by month. Behaviour is identic
 verified by parity tests against its saved outputs. Please keep in mind:
 
 - Forecasts hold every feature constant except month, year, quarter and the sin/cos month terms (as in the notebook).
+  Consequently the 2025-2027 forecasts are almost flat: they extend the latest observed state, they do not predict
+  future trends or seasons.
 - Changing a driver does not recompute derived features (lags, rolling statistics, interaction terms).
 - AQI is computed from pollutants that are also model inputs, so the very high test R² (~0.9999 for Lasso) partly
   reflects that relationship. Results are correlational, not causal.

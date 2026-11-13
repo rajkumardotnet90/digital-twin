@@ -47,6 +47,14 @@ class SimulationResult:
             .assign(aqi_change=lambda d: d["scenario_aqi"] - d["baseline_aqi"])
         )
 
+    def yearly_summary(self, column: str = "scenario_aqi") -> pd.DataFrame:
+        """Average forecast AQI per zone and calendar year (plus an all-zones row)."""
+        data = self.forecast.assign(year=lambda d: d["timestamp"].dt.year)
+        pivot = data.pivot_table(index="zone_name", columns="year", values=column, aggfunc="mean")
+        pivot = pivot.reindex(data["zone_name"].unique())
+        pivot.loc["All selected zones"] = pivot.mean()
+        return pivot
+
     def headline(self) -> dict[str, float | str]:
         s = self.summary
         base, scen = s["baseline_aqi"].mean(), s["scenario_aqi"].mean()

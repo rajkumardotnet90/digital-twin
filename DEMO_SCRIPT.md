@@ -1,7 +1,8 @@
 # 5-minute demo script
 
-**Setup (before you start):** app running with default settings (ElasticNet, all zones, 12 months, base month
-Jun 2024). Open the *Compare runs* tab once to confirm there is a baseline. Browser zoom ~110 % for the room.
+**Setup (before you start):** app running with default settings (ElasticNet, all zones, 42-month horizon through
+Dec 2027, base month Jun 2024). Open the *Compare runs* tab once to confirm there is a baseline. Browser zoom ~110 %
+for the room. In *Results & export*, the "Forecast by year" table shows 2025-2027 for every zone.
 If using the cloud URL, open it a few minutes early so it is awake.
 
 All numbers below were produced by the app itself with the default settings.
@@ -26,7 +27,8 @@ All numbers below were produced by the app itself with the default settings.
   the models are statistical, not causal or physical. Treat results as relative, not absolute, impact.
 - **Why ElasticNet by default?** It is what the notebook uses for what-if analysis and responds to the policy levers;
   Lasso is more accurate on the test set but ignores most of them.
-- **Can the forecast show seasonality?** Only weakly - the forecast varies month/sin/cos terms and holds the rest
-  constant (documented limitation).
+- **Can the forecast show seasonality / what does 2027 look like?** Only weakly - the forecast varies month/sin/cos
+  terms and holds the rest constant, so 2025-2027 are nearly flat (e.g. Downtown about 121 AQI every year).
+  It extends the latest state; it is not a trend forecast (documented limitation).
 - **How do you know the app matches the notebook?** Parity tests compare the extracted twin against the notebook's
   saved forecasts, policy results and the ElasticNet traffic table.

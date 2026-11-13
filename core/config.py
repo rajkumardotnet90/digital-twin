@@ -17,8 +17,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = Path(os.getenv("DT_DATA_DIR", PROJECT_ROOT / "data"))
 MODEL_DIR = Path(os.getenv("DT_MODEL_DIR", PROJECT_ROOT / "models"))
 DEFAULT_MODEL = os.getenv("DT_DEFAULT_MODEL", "elasticnet")
-MAX_HORIZON_MONTHS = int(os.getenv("DT_MAX_HORIZON", "36"))
-DEFAULT_HORIZON_MONTHS = int(os.getenv("DT_DEFAULT_HORIZON", "12"))
+MAX_HORIZON_MONTHS = int(os.getenv("DT_MAX_HORIZON", "42"))  # Jun 2024 + 42 months = Dec 2027
+DEFAULT_HORIZON_MONTHS = int(os.getenv("DT_DEFAULT_HORIZON", "42"))
 MAX_SAVED_RUNS = int(os.getenv("DT_MAX_SAVED_RUNS", "10"))
 
 MASTER_FILE = "master_feature_matrix.csv"
