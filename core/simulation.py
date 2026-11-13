@@ -38,10 +38,11 @@ class SimulationResult:
     forecast: pd.DataFrame  # one row per zone x month
     warnings: list[str] = field(default_factory=list)
 
-    def city_series(self) -> pd.DataFrame:
-        """Mean across the selected zones per forecast month."""
+    def city_series(self, zone_id: int | None = None) -> pd.DataFrame:
+        """Forecast per month: mean across the selected zones, or one zone if ``zone_id`` is given."""
+        data = self.forecast if zone_id is None else self.forecast[self.forecast["zone_id"] == zone_id]
         return (
-            self.forecast.groupby("timestamp", as_index=False)[["baseline_aqi", "scenario_aqi"]]
+            data.groupby("timestamp", as_index=False)[["baseline_aqi", "scenario_aqi"]]
             .mean()
             .assign(aqi_change=lambda d: d["scenario_aqi"] - d["baseline_aqi"])
         )
@@ -89,6 +90,12 @@ def validate_scenario(scenario: Scenario, twin: AQIDigitalTwin) -> None:
         available = set(twin.historical["timestamp"])
         if pd.Timestamp(scenario.base_timestamp) not in available:
             raise ScenarioValidationError("The selected base month is not in the historical data.")
+
+
+def history_series(twin: AQIDigitalTwin, zone_ids: tuple[int, ...] | list[int]) -> pd.DataFrame:
+    """Observed AQI per month, averaged over the given zones."""
+    data = twin.historical[twin.historical["zone_id"].isin(zone_ids)]
+    return data.groupby("timestamp", as_index=False)["AQI"].mean()
 
 
 def run_simulation(twin: AQIDigitalTwin, scenario: Scenario) -> SimulationResult:

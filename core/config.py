@@ -72,7 +72,7 @@ DRIVERS_BY_FEATURE = {d.feature: d for d in DRIVERS}
 
 # Policy presets from the deployment notebook: {feature: % change}.
 POLICY_PRESETS: dict[str, dict[str, float]] = {
-    "Custom / none": {},
+    "Custom (manual)": {},
     "Green Transport (30% less traffic)": {"avg_traffic_volume": -30},
     "Clean Energy (50% more renewables)": {"avg_renewable_pct": 50, "avg_energy_consumption": -25},
     "EV Push (100% more EVs)": {"total_vehicles_charged": 100, "total_energy_dispensed": 100},
