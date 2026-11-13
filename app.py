@@ -279,16 +279,24 @@ tab_forecast, tab_zones, tab_compare, tab_results, tab_about = st.tabs(
 
 # --------------------------------------------------------------------------- forecast tab
 with tab_forecast:
-    view_zone = st.selectbox(
+    ctrl_cols = st.columns([3, 1], vertical_alignment="bottom")
+    view_zone = ctrl_cols[0].selectbox(
         "Chart view",
         [None, *scenario.zone_ids],
         format_func=lambda z: "Average of selected zones" if z is None else f"{z} - {zone_names[z]}",
+    )
+    zoom = ctrl_cols[1].toggle(
+        "Zoom to forecast", value=True, help="Fit the axes to the forecast so small scenario effects are visible."
     )
     zones_in_view = list(scenario.zone_ids) if view_zone is None else [view_zone]
     title = "AQI: observed history and forecast" + ("" if view_zone is None else f" - {zone_names[view_zone]}")
     st.plotly_chart(
         charts.forecast_chart(
-            history_series(twin, zones_in_view), result.city_series(view_zone), scenario.base_timestamp, title
+            history_series(twin, zones_in_view),
+            result.city_series(view_zone),
+            scenario.base_timestamp,
+            title,
+            zoom_forecast=zoom,
         ),
         width="stretch",
     )
@@ -338,9 +346,11 @@ with tab_compare:
     entries += [(r["name"], r["result"], False) for r in saved if r["name"] in chosen]
     entries.append(("Current (live)", result, False))
 
+    show_history = st.toggle("Show observed history", value=False, help="Off fits the axes to the forecasts.")
     st.plotly_chart(
         charts.compare_chart(
-            history_series(twin, scenario.zone_ids), [(name, res.city_series(), base) for name, res, base in entries]
+            history_series(twin, scenario.zone_ids) if show_history else None,
+            [(name, res.city_series(), base) for name, res, base in entries],
         ),
         width="stretch",
     )

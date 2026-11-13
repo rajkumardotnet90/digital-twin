@@ -9,6 +9,9 @@ def test_chart_builders_return_expected_traces(twin_enet):
     hist = history_series(twin_enet, [1, 2, 3])
     fig = charts.forecast_chart(hist, res.city_series(), pd.Timestamp("2024-06-01"), "t")
     assert [t.name for t in fig.data] == ["Observed AQI", "Forecast - no change", "Forecast - scenario"]
+    zoomed = charts.forecast_chart(hist, res.city_series(), pd.Timestamp("2024-06-01"), "t", zoom_forecast=True)
+    assert len(zoomed.data[0].x) <= 7  # last 6 observed months + base month
+    assert zoomed.layout.yaxis.range[1] < fig.layout.yaxis.range[1]
     assert len(charts.zone_bar_chart(res.summary).data) == 2
     cmp = charts.compare_chart(hist, [("base", res.city_series(), True), ("run", res.city_series(), False)])
     assert len(cmp.data) == 3

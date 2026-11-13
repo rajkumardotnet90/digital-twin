@@ -11,22 +11,23 @@ ACTUAL, NO_CHANGE, SCENARIO = "#4C72B0", "#7f7f7f", "#d62728"
 RUN_COLORS = ["#d62728", "#2ca02c", "#9467bd", "#ff7f0e", "#17becf", "#8c564b", "#e377c2", "#bcbd22"]
 
 
-def _add_aqi_bands(fig: go.Figure, y_max: float) -> None:
+def _add_aqi_bands(fig: go.Figure, y_max: float, y_min: float = 0.0) -> None:
     lower = 0.0
     for upper, label, color in AQI_BANDS:
         if lower >= y_max:
             break
-        fig.add_hrect(
-            y0=lower,
-            y1=min(upper, y_max),
-            fillcolor=color,
-            opacity=0.10,
-            line_width=0,
-            layer="below",
-            annotation_text=label,
-            annotation_position="top right",
-            annotation_font_size=10,
-        )
+        if upper > y_min:
+            fig.add_hrect(
+                y0=max(lower, y_min),
+                y1=min(upper, y_max),
+                fillcolor=color,
+                opacity=0.10,
+                line_width=0,
+                layer="below",
+                annotation_text=label,
+                annotation_position="top right",
+                annotation_font_size=10,
+            )
         lower = upper
 
 
@@ -39,8 +40,20 @@ def _forecast_start(fig: go.Figure, when: pd.Timestamp) -> None:
     )
 
 
-def forecast_chart(history: pd.DataFrame, series: pd.DataFrame, base_month: pd.Timestamp, title: str) -> go.Figure:
-    """Observed AQI plus no-change and scenario forecasts."""
+def forecast_chart(
+    history: pd.DataFrame,
+    series: pd.DataFrame,
+    base_month: pd.Timestamp,
+    title: str,
+    zoom_forecast: bool = False,
+) -> go.Figure:
+    """Observed AQI plus no-change and scenario forecasts.
+
+    ``zoom_forecast`` shows only the last 6 observed months and fits the y-axis to the data,
+    which makes small scenario effects visible.
+    """
+    if zoom_forecast:
+        history = history[history["timestamp"] >= base_month - pd.DateOffset(months=6)]
     fig = go.Figure()
     fig.add_scatter(x=history["timestamp"], y=history["AQI"], name="Observed AQI", line={"color": ACTUAL, "width": 2})
     fig.add_scatter(
@@ -56,12 +69,17 @@ def forecast_chart(history: pd.DataFrame, series: pd.DataFrame, base_month: pd.T
         line={"color": SCENARIO, "width": 3},
         mode="lines+markers",
     )
-    y_max = max(history["AQI"].max(), series[["baseline_aqi", "scenario_aqi"]].max().max()) * 1.15
-    _add_aqi_bands(fig, y_max)
+    values = pd.concat([history["AQI"], series["baseline_aqi"], series["scenario_aqi"]])
+    if zoom_forecast:
+        pad = max(2.0, (values.max() - values.min()) * 0.15)
+        y_min, y_max = max(0.0, values.min() - pad), values.max() + pad
+    else:
+        y_min, y_max = 0.0, values.max() * 1.15
+    _add_aqi_bands(fig, y_max, y_min)
     _forecast_start(fig, base_month)
     fig.update_layout(
         title=title,
-        yaxis={"title": "AQI", "range": [0, y_max]},
+        yaxis={"title": "AQI", "range": [y_min, y_max]},
         xaxis_title="Month",
         hovermode="x unified",
         legend={"orientation": "h", "y": -0.2},
