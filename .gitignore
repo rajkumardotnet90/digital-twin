@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Data dumps and notebook scratch (the bundled data/ and models/ ARE tracked)
+data/raw/
+data/*.parquet
+*.log
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,51 @@
+zone_id,baseline_aqi,simulated_aqi,aqi_change,pct_change,modifications,policy
+1,122.30352546793426,122.30352546793426,0.0,0.0,{},Baseline (No Change)
+2,99.62521620967482,99.62521620967482,0.0,0.0,{},Baseline (No Change)
+3,131.56207544429378,131.56207544429378,0.0,0.0,{},Baseline (No Change)
+4,128.99510800846687,128.99510800846687,0.0,0.0,{},Baseline (No Change)
+5,130.343250213636,130.343250213636,0.0,0.0,{},Baseline (No Change)
+6,128.00606299830426,128.00606299830426,0.0,0.0,{},Baseline (No Change)
+7,498.08255225531707,498.08255225531707,0.0,0.0,{},Baseline (No Change)
+8,128.4167824984923,128.4167824984923,0.0,0.0,{},Baseline (No Change)
+9,119.57689392352194,119.57689392352194,0.0,0.0,{},Baseline (No Change)
+10,92.57887114022681,92.57887114022681,0.0,0.0,{},Baseline (No Change)
+1,122.30352546793426,122.30352546793426,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+2,99.62521620967482,99.62521620967482,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+3,131.56207544429378,131.56207544429378,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+4,128.99510800846687,128.99510800846687,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+5,130.343250213636,130.343250213636,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+6,128.00606299830426,128.00606299830426,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+7,498.08255225531707,498.08255225531707,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+8,128.4167824984923,128.4167824984923,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+9,119.57689392352194,119.57689392352194,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+10,92.57887114022681,92.57887114022681,0.0,0.0,{'avg_traffic_volume': '-30%'},Green Transport (30% less traffic)
+1,122.30352546793426,123.8551479029804,1.5516224350461414,1.2686653382309476,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+2,99.62521620967482,101.11913021813741,1.4939140084625961,1.4995340188958295,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+3,131.56207544429378,132.83491226496636,1.2728368206725804,0.967480040409918,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+4,128.99510800846687,130.5303096531487,1.5352016446818197,1.1901239267004247,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+5,130.343250213636,131.85469061894787,1.5114404053118733,1.159584714079619,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+6,128.00606299830426,129.49722244970627,1.4911594514020123,1.1649131427640003,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+7,498.08255225531707,499.66595659338077,1.5834043380637013,0.3178999808152381,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+8,128.4167824984923,130.1708131267636,1.7540306282712947,1.3658889392372748,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+9,119.57689392352194,121.12601752591166,1.5491236023897272,1.2955041325797472,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+10,92.57887114022681,94.09276356274833,1.513892422521522,1.63524614620594,"{'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%'}",Clean Energy (50% more renewables)
+1,122.30352546793426,122.30352546793426,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+2,99.62521620967482,99.62521620967482,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+3,131.56207544429378,131.56207544429378,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+4,128.99510800846687,128.99510800846687,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+5,130.343250213636,130.343250213636,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+6,128.00606299830426,128.00606299830426,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+7,498.08255225531707,498.08255225531707,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+8,128.4167824984923,128.4167824984923,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+9,119.57689392352194,119.57689392352194,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+10,92.57887114022681,92.57887114022681,0.0,0.0,"{'total_vehicles_charged': '100%', 'total_energy_dispensed': '100%'}",EV Push (100% more EVs)
+1,122.30352546793426,123.8551479029804,1.5516224350461414,1.2686653382309476,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+2,99.62521620967482,101.11913021813741,1.4939140084625961,1.4995340188958295,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+3,131.56207544429378,132.83491226496636,1.2728368206725804,0.967480040409918,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+4,128.99510800846687,130.5303096531487,1.5352016446818197,1.1901239267004247,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+5,130.343250213636,131.85469061894787,1.5114404053118733,1.159584714079619,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+6,128.00606299830426,129.49722244970627,1.4911594514020123,1.1649131427640003,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+7,498.08255225531707,499.66595659338077,1.5834043380637013,0.3178999808152381,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+8,128.4167824984923,130.1708131267636,1.7540306282712947,1.3658889392372748,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+9,119.57689392352194,121.12601752591166,1.5491236023897272,1.2955041325797472,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
+10,92.57887114022681,94.09276356274833,1.513892422521522,1.63524614620594,"{'avg_traffic_volume': '-30%', 'avg_renewable_pct': '50%', 'avg_energy_consumption': '-25%', 'total_vehicles_charged': '100%'}",Combined Green Policy
